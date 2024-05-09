@@ -1,113 +1,258 @@
+"use client";
+
+import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { ChevronRightIcon } from "lucide-react";
+import Hero from "@/components/Hero";
+import NavBar from "@/components/NavBar";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <NavBar route="/" />
+      <main className="bg-gray-50/90 overflow-x-hidden">
+        <Hero imageSource="/splash/road.jpg" title="Welcome to ADHDAlly">
+          <p className="max-w-[600px] text-gray-200 md:text-xl dark:text-gray-400">
+            Raising awareness for children struggling with ADHD all across the
+            nation. Supporting the youth with the resources they need to
+            successfully work with their unique struggles from professionals
+            that teach and support groups that guide you every step of the way.
+          </p>
+        </Hero>
+        <section className="py-6 md:py-12 lg:py-16 xl:py-20">
+          <motion.div
+            className="container px-4 md:px-6"
+            initial={{
+              x: 200,
+              opacity: 0,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ type: "just", delay: 0, duration: 1 }}
+            viewport={{ once: true }}
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            <div className="grid items-center gap-6 grid-rows-1 lg:grid-cols-2 lg:gap-12">
+              <div className="flex items-center justify-center">
+                <a
+                  href="https://www.youtube.com/embed/z2hLa5kDRCA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center"
+                >
+                  <iframe
+                    title="YouTube Video"
+                    width="100%"
+                    height="300"
+                    src="https://www.youtube.com/embed/z2hLa5kDRCA"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="aspect-[2/1] rounded-3xl overflow-hidden object-cover"
+                  ></iframe>
+                </a>
+              </div>
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter lg:text-4xl xl:text-5xl/none">
+                    Overview
+                  </h2>
+                  <p className="max-w-prose text-gray-500 md:text-xl dark:text-gray-400">
+                    ADHD, or Attention Deficit Hyperactivity Disorder, is
+                    characterized by symptoms such as inattention,
+                    hyperactivity, and impulsivity. These symptoms can
+                    significantly impact a child&apos;s social life by causing
+                    difficulties in maintaining friendships and participating in
+                    group activities. Academically, these symptoms may lead to
+                    challenges in concentration, organization, and following
+                    instructions. However, with appropriate resources and
+                    support, children with ADHD can better navigate these
+                    challenges and improve their overall well-being and academic
+                    performance.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+        <section className="bg-gray-900 py-12 md:py-16 lg:py-20 xl:py-24">
+          <motion.div
+            className="container px-4 md:px-6"
+            initial={{
+              x: -200,
+              opacity: 0,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ type: "just", delay: 0, duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="grid items-center gap-6 grid-rows-1 lg:grid-cols-2 lg:gap-12">
+              <div className="flex flex-col justify-center space-y-4 text-gray-50 dark:text-gray-900">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter lg:text-4xl xl:text-5xl/none">
+                    States
+                  </h2>
+                  <p className="max-w-prose text-gray-200 md:text-xl dark:text-gray-400">
+                    State-level statistics on other children across the nation
+                    also working forward in their journey with ADHD.
+                  </p>
+                </div>
+                <div>
+                  <Link
+                    className="inline-flex items-center text-sm font-medium underline underline-offset-2 rounded-md hover:underline-0 transition-none hover:underline-gray-950 dark:text-gray-900"
+                    href={"/states"}
+                  >
+                    Learn More
+                    <ChevronRightIcon className="w-4 h-4 ml-1 inline-block" />
+                  </Link>
+                </div>
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  alt="Statistics"
+                  className="aspect-[2/1] rounded-3xl overflow-hidden object-cover"
+                  height="300"
+                  src="/splash/statistics.jpg"
+                  width="600"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </section>
+        <section className="py-12 md:py-16 lg:py-20 xl:py-24">
+          <motion.div
+            className="container px-4 md:px-6"
+            initial={{
+              x: 200,
+              opacity: 0,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ type: "just", delay: 0, duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="grid items-center gap-6 grid-rows-1 lg:grid-cols-2 lg:gap-12">
+              <div className="flex items-center justify-center">
+                <Image
+                  alt="Professionals"
+                  className="aspect-[2/1] rounded-3xl overflow-hidden object-cover"
+                  height="300"
+                  src="/splash/employement.jpg"
+                  width="600"
+                />
+              </div>
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter lg:text-4xl xl:text-5xl/none">
+                    Professionals
+                  </h2>
+                  <p className="max-w-prose text-gray-500 md:text-xl dark:text-gray-400">
+                    Offering diagnosis, medication management, therapy,
+                    coaching, and other unique resources.
+                  </p>
+                </div>
+                <div>
+                  <Link
+                    className="inline-flex items-center text-sm font-medium underline underline-offset-2 rounded-md hover:underline-0 transition-none hover:underline-gray-950"
+                    href={"/professionals"}
+                  >
+                    Learn More
+                    <ChevronRightIcon className="w-4 h-4 ml-1 inline-block" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+        <section className="bg-gray-900 py-12 md:py-16 lg:py-20 xl:py-24">
+          <motion.div
+            className="container px-4 md:px-6"
+            initial={{
+              x: -200,
+              opacity: 0,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ type: "just", delay: 0, duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="grid items-center gap-6 grid-rows-1 lg:grid-cols-2 lg:gap-12">
+              <div className="flex flex-col justify-center space-y-4 text-gray-50 dark:text-gray-900">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter lg:text-4xl xl:text-5xl/none">
+                    Support Groups
+                  </h2>
+                  <p className="max-w-prose text-gray-200 md:text-xl dark:text-gray-400">
+                    Access to peer support, shared experiences, accountability,
+                    and a community to navigate this hardship with.
+                  </p>
+                </div>
+                <div>
+                  <Link
+                    className="inline-flex items-center text-sm font-medium underline underline-offset-2 rounded-md hover:underline-0 transition-none hover:underline-gray-950 dark:text-gray-900"
+                    href={"/supportgroups"}
+                  >
+                    Learn More
+                    <ChevronRightIcon className="w-4 h-4 ml-1 inline-block" />
+                  </Link>
+                </div>
+              </div>
+              <div className="flex items-center justify-center">
+                <Image
+                  alt="Support Groups"
+                  className="aspect-[2/1] rounded-3xl overflow-hidden object-cover"
+                  height="300"
+                  src="/splash/rehab.jpg"
+                  width="600"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </section>
+        <section className="py-12 md:py-16 lg:py-20 xl:py-24">
+          <motion.div
+            className="container px-4 md:px-6"
+            initial={{
+              x: 200,
+              opacity: 0,
+            }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ type: "just", delay: 0, duration: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="grid items-center gap-6 grid-rows-1 lg:grid-cols-2 lg:gap-12">
+              <div className="flex items-center justify-center">
+                <Image
+                  alt="Professionals"
+                  className="aspect-[2/1] rounded-3xl overflow-hidden object-cover"
+                  height="300"
+                  src="/splash/medication.jpg"
+                  width="600"
+                />
+              </div>
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="space-y-2">
+                  <h2 className="text-3xl font-bold tracking-tighter lg:text-4xl xl:text-5xl/none">
+                    Medication Shortage
+                  </h2>
+                  <p className="max-w-prose text-gray-500 md:text-xl dark:text-gray-400">
+                    ADHD medicine has classically been a common solution, but
+                    recent shortages have made this more difficult than before.
+                  </p>
+                </div>
+                <div>
+                  <Link
+                    className="inline-flex items-center text-sm font-medium underline underline-offset-2 rounded-md hover:underline-0 transition-none hover:underline-gray-950"
+                    href={
+                      "https://www.cbsnews.com/news/adhd-medication-shortage-cause/"
+                    }
+                  >
+                    News Article
+                    <ChevronRightIcon className="w-4 h-4 ml-1 inline-block" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+      </main>
+    </>
   );
 }
