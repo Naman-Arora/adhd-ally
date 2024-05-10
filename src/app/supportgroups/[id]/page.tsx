@@ -3,9 +3,14 @@ import Hero from "@/components/Hero";
 import MapLocation from "@/components/MapLocation";
 import { getStateByName } from "@/lib/queries/states";
 import StateDetails from "@/components/sections/StateDetails";
-import { getSupportGroupById } from "@/lib/queries/supportgroups";
+import {
+  type SupportGroup,
+  getSupportGroupById,
+} from "@/lib/queries/supportgroups";
 import { getProfessionalsByState } from "@/lib/queries/professionals";
 import ProfessionalsCards from "@/components/sections/ProfessionalsCards";
+import ky from "ky";
+import { BASE_URL } from "@/lib/api";
 
 export default async function Page({
   params: { id },

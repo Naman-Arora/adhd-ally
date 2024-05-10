@@ -28,32 +28,32 @@ export default function StateDetails({ state }: { state: State }) {
               {state.name}
             </Link>
             <p className="max-w-prose text-gray-300 md:text-xl ">
-               <span className="font-bold">
-                  {state.population.toLocaleString()}
-               </span>
-               {" — Total Population"}
+              <span className="font-bold">
+                {state.population.toLocaleString()}
+              </span>
+              {" — Total Population"}
             </p>
             <p className="max-w-prose text-gray-300 md:text-xl">
-               <span className="font-bold">
-                  {state.ever_received_diagnosis.toLocaleString()}
-               </span>{" "}
-               {" — Received ADHD Diagnosis"}
+              <span className="font-bold">
+                {state.ever_received_diagnosis.toLocaleString()}
+              </span>{" "}
+              {" — Received ADHD Diagnosis"}
             </p>
             <p className="max-w-prose text-gray-300 md:text-xl">
-               <span className="font-bold">
-                  {state.current_adhd.toLocaleString()}
-               </span>
-               {" — Population With ADHD"}
+              <span className="font-bold">
+                {state.current_adhd.toLocaleString()}
+              </span>
+              {" — Population With ADHD"}
             </p>
             <p className="max-w-prose text-gray-300 md:text-xl">
-               <span className="font-bold">{state.taking_medication}%</span>
-               {" — Taking Medication"}
+              <span className="font-bold">{state.taking_medication}%</span>
+              {" — Taking Medication"}
             </p>
             <p className="max-w-prose text-gray-300 md:text-xl">
-               <span className="font-bold">
-                  {state.received_behavioral_treatment.toLocaleString()}%
-               </span>
-               {" — Received Behavioral Treatment"}
+              <span className="font-bold">
+                {state.received_behavioral_treatment.toLocaleString()}%
+              </span>
+              {" — Received Behavioral Treatment"}
             </p>
           </div>
         </div>

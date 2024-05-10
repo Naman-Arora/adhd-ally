@@ -12,24 +12,14 @@ export type State = {
 };
 
 export async function getStates(page: number) {
-  const params = new URLSearchParams();
-  params.set("page", String(page));
-  params.set("limit", String(250));
-  const { data } = await api.get<State[]>(`/states/?${params.toString()}`);
-//   console.log({ data });
-  return data;
-}
-
-export async function getStatesMetadata() {
-  const { data } = await api.get<{ count: number; limit: number }>(
-    `/states/metadata`
-  );
+  const res = api.get("states");
+  const data = await res.json<State[]>();
   return data;
 }
 
 export async function getStateByName(name: string) {
   try {
-    const { data } = await api.get<State>(`/states/${name}`);
+    const data = await api.get(`states/${name}`).json<State>();
     return data;
   } catch {
     return notFound();

@@ -6,8 +6,8 @@ export async function GET(
   { params: { name } }: { params: { name: string } }
 ) {
   try {
-    const res = await pool.query("SELECT * from professionals WHERE state=$1", [name]);
-    return NextResponse.json(res.rows[0]);
+    const res = await pool.query("SELECT * from groups WHERE state=$1 ORDER BY name", [name]);
+    return NextResponse.json(res.rows);
   } catch (e) {
     console.error(e);
     return NextResponse.json(

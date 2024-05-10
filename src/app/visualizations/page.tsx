@@ -1,10 +1,16 @@
+import { pool } from "@/lib/db";
 import Visualizations from "./Visualizations";
-import { getStates } from "@/lib/queries/states";
-import { getSupportGroups } from "@/lib/queries/supportgroups";
+import type { State } from "@/lib/queries/states";
+import type { SupportGroup } from "@/lib/queries/supportgroups";
 
 export default async function Page() {
-  const states = await getStates(1);
-  const supportgroups = await getSupportGroups(1);
+  const { rows: states } = await pool.query<State>(
+    "SELECT * from states ORDER BY name"
+  );
+
+  const { rows: supportgroups } = await pool.query<SupportGroup>(
+    "SELECT * from groups ORDER BY name"
+  );
 
   const supportGroupCountByState = states.map((state, id) => ({
     id,

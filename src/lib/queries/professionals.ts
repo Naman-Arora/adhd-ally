@@ -18,30 +18,13 @@ export type Professional = {
 };
 
 export async function getProfessionals(page: number) {
-  const params = new URLSearchParams();
-  params.set("page", String(page));
-  //   params.set("limit", "24");
-  params.set("limit", String(250));
-  const { data } = await api.get<Professional[]>(
-    `/professionals?${params.toString()}`
-  );
-  return data;
-}
-
-export async function getProfessionalsMetadata() {
-  const params = new URLSearchParams();
-  params.set("limit", "24");
-  const { data } = await api.get<{ count: number; limit: number }>(
-    `/professionals/metadata/?${params.toString()}`
-  );
+  const data = await api.get("professionals").json<Professional[]>();
   return data;
 }
 
 export async function getProfessionalsByState(name: string) {
   try {
-    const { data } = await api.get<Professional[]>(
-      `/professionals/state/${name}`
-    );
+    const data = await api.get(`professionals/state/${name}`).json<Professional[]>();
     return data;
   } catch {
     return [];
@@ -50,7 +33,7 @@ export async function getProfessionalsByState(name: string) {
 
 export async function getProfessionalById(id: string) {
   try {
-    const { data } = await api.get<Professional>(`/professionals/${id}`);
+    const data = await api.get(`professionals/${id}`).json<Professional>();
     return data;
   } catch (e) {
     console.error(e);

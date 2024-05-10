@@ -13,28 +13,13 @@ export type SupportGroup = {
 };
 
 export async function getSupportGroups(page: number) {
-  const params = new URLSearchParams();
-  params.set("page", String(page));
-  //   params.set("limit", "24");
-  params.set("limit", String(250));
-  const { data } = await api.get<SupportGroup[]>(
-    `/supportgroups/?${params.toString()}`
-  );
-  return data;
-}
-
-export async function getSupportGroupsMetadata() {
-  const params = new URLSearchParams();
-  params.set("limit", "24");
-  const { data } = await api.get<{ count: number; limit: number }>(
-    `/supportgroups/metadata/?${params.toString()}`
-  );
+  const data = await api.get("supportgroups").json<SupportGroup[]>();
   return data;
 }
 
 export async function getSupportGroupById(id: string) {
   try {
-    const { data } = await api.get<SupportGroup>(`/supportgroups/${id}`);
+    const data = await api.get(`supportgroups/${id}`).json<SupportGroup>();
     return data;
   } catch {
     return notFound();
@@ -43,9 +28,7 @@ export async function getSupportGroupById(id: string) {
 
 export async function getSupportGroupsByState(state: string) {
   try {
-    const { data } = await api.get<SupportGroup[]>(
-      `/supportgroups/state/${state}`
-    );
+    const data = await api.get(`supportgroups/state/${state}`).json<SupportGroup[]>();
     return data;
   } catch {
     return [];
