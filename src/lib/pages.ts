@@ -12,15 +12,15 @@ export const PATHS = [
     path: "/supportgroups",
   },
   {
-    name: "About",
-    path: "/about",
-  },
-  {
     name: "Visualizations",
     path: "/visualizations",
   },
-   {
+  {
     name: "Developer Visualizations",
     path: "/developervisualizations",
+  },
+  {
+    name: "About",
+    path: "/about",
   },
 ] as const;

@@ -35,6 +35,7 @@ import ProfessionalsCards from "@/components/sections/ProfessionalsCards";
 import SupportGroupsCards from "@/components/sections/SupportGroupsCards";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Image from "next/image";
 
 type Props = {
   route: (typeof PATHS)[number]["name"] | "/";
@@ -118,9 +119,19 @@ export default function NavBar({ route }: Props) {
   //   }, [supportgroups, debounced]);
 
   return (
-    <nav className="w-full h-16 flex flex-row items-center justify-between px-4 bg-white border-gray-200 border-b rounded shadow">
-      <Link className="flex flex-row items-center gap-2" href={"/"}>
-        <span className="font-bold text-2xl">ADHDAlly</span>
+    <nav className="sticky top-0 w-full h-14 md:h-16 flex flex-row items-center justify-between md:px-4 bg-white/80 backdrop-blur-md border-transparent border-b rounded shadow z-10">
+      <Link
+        className="flex flex-row items-center gap-1 rounded-full px-4 py-2  border hover:bg-gray-100 hover:border-gray-300 hover:shadow border-transparent"
+        href={"/"}
+      >
+        <Image
+          src={"/star.svg"}
+          alt="ADHD Ally"
+          height={100}
+          width={100}
+          className="size-4 md:size-6"
+        />
+        <span className="font-bold text-xl md:text-2xl">ADHDAlly</span>
       </Link>
       <div className="flex flex-row items-center justify-between gap-2 md:gap-4">
         {/* <Dialog> 
@@ -237,7 +248,7 @@ export default function NavBar({ route }: Props) {
           </DialogContent>
         </Dialog>
         {/*  )} */}
-        <div className="hidden md:flex flex-row gap-4 font-semibold">
+        <div className="hidden md:flex flex-row gap-2 font-semibold">
           {PATHS.map(({ name, path }, index) => (
             <Link
               className={cn(
@@ -256,7 +267,7 @@ export default function NavBar({ route }: Props) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button className="md:hidden" size="icon" variant="ghost">
-              <Menu className="h-4 w-4" />
+              <Menu className="size-4 md:size-6" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56 border border-gray-400">

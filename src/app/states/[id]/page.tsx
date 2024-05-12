@@ -1,8 +1,10 @@
+import { pool } from "@/lib/db";
 import Hero from "@/components/Hero";
-import { getStateByName } from "@/lib/queries/states";
-import { getSupportGroupsByState } from "@/lib/queries/supportgroups";
-import { getProfessionalsByState } from "@/lib/queries/professionals";
+import type { State } from "@/lib/queries/states";
 import MapLocation from "@/components/MapLocation";
+import NoResultsFound from "@/components/NoResultsFound";
+import type { SupportGroup } from "@/lib/queries/supportgroups";
+import type { Professional } from "@/lib/queries/professionals";
 import ProfessionalsCards from "@/components/sections/ProfessionalsCards";
 import SupportGroupsCards from "@/components/sections/SupportGroupsCards";
 
@@ -11,9 +13,24 @@ export default async function StateByName({
 }: {
   params: { id: string };
 }) {
-  const state = await getStateByName(id);
-  const supportgroups = await getSupportGroupsByState(state.name);
-  const professionals = await getProfessionalsByState(state.name);
+  const {
+    rows: [state],
+  } = await pool.query<State>("SELECT * from states WHERE name=$1", [id]);
+
+  if (state === undefined) {
+    return <NoResultsFound showSearchIcon={false} />;
+  }
+
+  const [{ rows: supportgroups }, { rows: professionals }] = await Promise.all([
+    pool.query<SupportGroup>(
+      "SELECT * from groups WHERE state=$1 ORDER BY name",
+      [state.name]
+    ),
+    pool.query<Professional>(
+      "SELECT * from professionals WHERE state=$1 ORDER BY name",
+      [state.name]
+    ),
+  ]);
 
   return (
     <>
@@ -45,16 +62,13 @@ export default async function StateByName({
           {" — Received Behavioral Treatment"}
         </p>
       </Hero>
-
       <MapLocation location={state.name} />
-
       {professionals.length > 0 && (
         <section className="w-full py-12 md:py-24 bg-gray-900">
           <div className="container px-10 flex flex-col gap-8 md:gap-16 items-center">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-50">
               Professionals
             </h2>
-
             <ProfessionalsCards data={professionals} />
           </div>
         </section>
@@ -65,7 +79,6 @@ export default async function StateByName({
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-50">
               Support Groups
             </h2>
-
             <SupportGroupsCards data={supportgroups} />
           </div>
         </section>

@@ -7,7 +7,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ADHD Ally",
-  description: "Assist",
+  description: "Get ADHD info & assistance!",
+  icons: {
+    icon: ["/star.svg"],
+    apple: ["/star.svg"],
+  },
 };
 
 export default function RootLayout({

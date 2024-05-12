@@ -9,7 +9,6 @@ const api = ky.create({
   fetch,
   prefixUrl: BASE_URL,
   timeout: 20000,
-  //   retry:,
 });
 
 export default api;

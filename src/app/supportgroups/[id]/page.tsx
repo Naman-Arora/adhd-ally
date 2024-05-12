@@ -1,25 +1,39 @@
 import Link from "next/link";
+import { pool } from "@/lib/db";
 import Hero from "@/components/Hero";
+import type { State } from "@/lib/queries/states";
 import MapLocation from "@/components/MapLocation";
-import { getStateByName } from "@/lib/queries/states";
+import NoResultsFound from "@/components/NoResultsFound";
 import StateDetails from "@/components/sections/StateDetails";
-import {
-  type SupportGroup,
-  getSupportGroupById,
-} from "@/lib/queries/supportgroups";
-import { getProfessionalsByState } from "@/lib/queries/professionals";
+import type { Professional } from "@/lib/queries/professionals";
+import type { SupportGroup } from "@/lib/queries/supportgroups";
 import ProfessionalsCards from "@/components/sections/ProfessionalsCards";
-import ky from "ky";
-import { BASE_URL } from "@/lib/api";
 
 export default async function Page({
   params: { id },
 }: {
   params: { id: string };
 }) {
-  const group = await getSupportGroupById(id);
-  const state = await getStateByName(group.state);
-  const professionals = await getProfessionalsByState(group.state);
+  const {
+    rows: [group],
+  } = await pool.query<SupportGroup>("SELECT * from groups WHERE id=$1", [id]);
+
+  if (group === undefined) {
+    return <NoResultsFound showSearchIcon={false} />;
+  }
+
+  const [
+    {
+      rows: [state],
+    },
+    { rows: professionals },
+  ] = await Promise.all([
+    pool.query<State>("SELECT * from states WHERE name=$1", [group.state]),
+    pool.query<Professional>(
+      "SELECT * from professionals WHERE state=$1 ORDER BY name",
+      [group.state]
+    ),
+  ]);
 
   return (
     <>
@@ -47,11 +61,8 @@ export default async function Page({
           {group.email.toLocaleString()}
         </p>
       </Hero>
-
       <MapLocation location={group.location} />
-
       <StateDetails state={state} />
-
       <section className="w-full py-12 md:py-24">
         <div className="container px-10 flex flex-col gap-8 md:gap-16 items-center">
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">

@@ -1,9 +1,14 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { AlertTriangle, Search } from "lucide-react";
 
-export default function NoResultsFound() {
+type Props = {
+  showSearchIcon?: boolean;
+};
+
+export default function NoResultsFound({ showSearchIcon = true }: Props) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -15,8 +20,8 @@ export default function NoResultsFound() {
     >
       <AlertTriangle className="h-24 w-24" />
       <p className="flex flex-row gap-2 items-center text-xl font-semibold">
-        <Search className="h-6 w-6" />
-        No Results Found.
+        <Search className={cn("h-6 w-6", { hidden: !showSearchIcon })} />
+        No results found
       </p>
     </motion.div>
   );
