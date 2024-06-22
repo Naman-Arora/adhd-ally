@@ -2,9 +2,8 @@ import { type NextRequest, NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
-  if (
-    req.headers.get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`
-  ) {
+  const authHeader = req.headers.get("authorization");
+  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ message: "Unauthorized!" }, { status: 401 });
   }
   try {
