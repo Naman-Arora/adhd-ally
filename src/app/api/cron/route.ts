@@ -1,11 +1,9 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
-  const authHeader = req.headers.get("authorization");
-  if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
-    return NextResponse.json({ message: "Unauthorized!" }, { status: 401 });
-  }
   try {
     const { rows: states } = await pool.query(
       "SELECT * from states ORDER BY name"
