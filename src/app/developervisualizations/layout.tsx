@@ -1,14 +1,16 @@
 import Hero from "@/components/Hero";
 import NavBar from "@/components/NavBar";
+import { notFound } from "next/navigation";
 
 export default function Layout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return notFound();
   return (
     <>
-      <NavBar route="Developer Visualizations" />
+      <NavBar route="/" />
       <Hero
         imageSource="https://i.pcmag.com/imagery/articles/02Xkt5sp3fVl5rGUtk3DXMi-7..v1569485349.jpg"
         title="Developer Visualizations"

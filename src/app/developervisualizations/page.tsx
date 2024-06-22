@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import DeveloperVisualizations from "./DeveloperVisualizations";
 
 export type StateD = {
@@ -26,6 +27,7 @@ type OwnershipCount = {
 };
 
 export default async function Page() {
+  return notFound();
   const res1 = await fetch("https://api.care-hub.me/states/?skip=0&limit=51");
   const d1 = await res1.json();
   const states = d1[0] as StateD[];

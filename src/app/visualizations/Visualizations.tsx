@@ -116,7 +116,7 @@ export default function Visualizations({
           />
         </div>
       </div>
-      <div className="w-full flex flex-col py-12 bg-gray-900 text-white gap-8 px-12">
+      <div className="w-full flex flex-col py-12 bg-gray-900 text-white gap-8 px-24 md:px-12">
         <h1 className="text-center font-bold text-2xl">Critiques</h1>
         {critiques.map(({ question, response }, i) => (
           <div className="flex flex-col gap-2" key={i}>

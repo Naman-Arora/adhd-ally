@@ -15,10 +15,10 @@ export const PATHS = [
     name: "Visualizations",
     path: "/visualizations",
   },
-  {
-    name: "Developer Visualizations",
-    path: "/developervisualizations",
-  },
+  //   {
+  //     name: "Developer Visualizations",
+  //     path: "/developervisualizations",
+  //   },
   {
     name: "About",
     path: "/about",
